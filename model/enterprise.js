@@ -14,7 +14,7 @@ const genHash = function(password, salt) {
 	return hash.digest("hex");
 };
 
-var entrepriseSchema = new Schema({
+var enterpriseSchema = new Schema({
 	nom: String,
 	ref: String,
 	ville: String,
@@ -31,7 +31,7 @@ var entrepriseSchema = new Schema({
 	salt: String
 });
 
-entrepriseSchema.pre("save", function(next) {
+enterpriseSchema.pre("save", function(next) {
 	if (this.isNew) {
 		this.salt = genSalt();
 		this.password = genHash(this.password, this.salt);
@@ -39,7 +39,7 @@ entrepriseSchema.pre("save", function(next) {
 	next();
 });
 
-entrepriseSchema.methods.validatePassword = function(password) {
+enterpriseSchema.methods.validatePassword = function(password) {
 	if (this.password === genHash(password, this.salt)) {
 		return true;
 	} else {
@@ -47,5 +47,5 @@ entrepriseSchema.methods.validatePassword = function(password) {
 	}
 };
 
-var Entreprise = mongoose.model("Entreprise", entrepriseSchema);
-exports.Entreprise = Entrprise;
+var Enterprise = mongoose.model("Entreprise", enterpriseSchema);
+exports.Enterprise = Enterprise;

@@ -1,7 +1,7 @@
 var mongoose = require("mongoose");
 var Schema = mongoose.Schema;
 
-var annonceSchema = new Schema({
+var announceSchema = new Schema({
 	dateCreation: {
 		type: Date,
 		default: new Date()
@@ -17,5 +17,5 @@ var annonceSchema = new Schema({
 	}
 });
 
-var Annonce = mongoose.model("Annonce", annonceSchema);
-exports.Annonce = Annonce;
+var Announce = mongoose.model("Announce", announceSchema);
+exports.Announce = Announce;
